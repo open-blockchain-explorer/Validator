@@ -1,5 +1,3 @@
-from uuid import uuid4
-
 from django.core.validators import MaxValueValidator
 from django.db import models
 from thenewboston.constants.network import BALANCE_LOCK_LENGTH, MAX_POINT_VALUE, VERIFY_KEY_LENGTH
@@ -7,7 +5,7 @@ from thenewboston.constants.network import BALANCE_LOCK_LENGTH, MAX_POINT_VALUE,
 
 class TransactionLog(models.Model):
     status_choices = [
-        ('PENDING', 0),
+        ('UNCONFIRMED', 0),
         ('CONFIRMED', 1),
         ('REJECTED', 2)
     ]
@@ -37,9 +35,6 @@ class TransactionLog(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     signature = models.CharField(max_length=128)
     status = models.IntegerField(choices=status_choices, default=0)
-
-    class Meta:
-        default_related_name = 'transactionlog'
 
     def __str__(self):
         return (

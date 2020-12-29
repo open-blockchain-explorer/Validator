@@ -27,6 +27,7 @@ INSTALLED_APPS = [
 
     # API (v1)
     'v1.accounts.apps.AccountsConfig',
+    'v1.transaction_log.apps.TransactionsConfig',
     'v1.bank_confirmation_services.apps.BankConfirmationServicesConfig',
     'v1.connection_requests.apps.ConnectionRequestsConfig',
     'v1.self_configurations.apps.SelfConfigurationsConfig',
@@ -64,17 +65,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB', 'thenewboston'),
-        'USER': os.getenv('POSTGRES_USER', 'thenewboston'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'thenewboston'),
-        'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
-        'PORT': os.getenv('POSTGRES_PORT', '5432')
-    }
-}
 
 AUTH_PASSWORD_VALIDATORS = [
     {

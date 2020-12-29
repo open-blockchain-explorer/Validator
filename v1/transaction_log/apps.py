@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class AccountsConfig(AppConfig):
-    name = 'v1.accounts'
+class TransactionsConfig(AppConfig):
+    name = 'v1.transaction_log'
