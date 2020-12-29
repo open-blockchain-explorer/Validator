@@ -14,6 +14,7 @@ from v1.crawl.urls import router as crawl_router
 from v1.self_configurations.urls import router as self_configurations_router
 from v1.status_updates.urls import router as status_updates_router
 from v1.sync.urls import router as sync_router
+from v1.transaction_log.urls import router as transaction_log_router
 from v1.validators.urls import router as validators_router
 
 admin.site.index_title = 'Admin'
@@ -45,6 +46,7 @@ router.registry.extend(crawl_router.registry)
 router.registry.extend(self_configurations_router.registry)
 router.registry.extend(status_updates_router.registry)
 router.registry.extend(sync_router.registry)
+router.registry.extend(transaction_log_router.registry)
 router.registry.extend(validators_router.registry)
 
 urlpatterns += router.urls

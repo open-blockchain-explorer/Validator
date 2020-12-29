@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from .models.account import Account
+from .models.transaction_log import TransactionLog
 
-admin.site.register(Account)
+admin.site.register(TransactionLog)

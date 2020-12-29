@@ -1,6 +1,6 @@
 from rest_framework.routers import SimpleRouter
 
-from .views.account import AccountViewSet
+from .views.transaction_log import TransactionLogViewSet
 
 router = SimpleRouter(trailing_slash=False)
-router.register('accounts', AccountViewSet)
+router.register('transactions', TransactionLogViewSet)

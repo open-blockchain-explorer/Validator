@@ -16,6 +16,17 @@ if SENTRY_DSN:
         integrations=[CeleryIntegration(), DjangoIntegration(), RedisIntegration(), TornadoIntegration()],
     )
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DB', 'thenewboston'),
+        'USER': os.getenv('POSTGRES_USER', 'thenewboston'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'thenewboston'),
+        'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
+        'PORT': os.getenv('POSTGRES_PORT', '5432')
+    }
+}
+
 DEBUG = False
 
 INTERNAL_IPS = [

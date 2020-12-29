@@ -4,11 +4,11 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from v1.cache_tools.accounts import get_account_balance, get_account_balance_lock
-from ..models.account import Account
-from ..serializers.account import AccountSerializer
+from ..models.transaction_log import TransactionLog
+from ..serializers.transaction_log import TransactionLogSerializer
 
 
-class AccountViewSet(
+class TransactionLogViewSet(
     ListModelMixin,
     GenericViewSet,
 ):
@@ -26,8 +26,8 @@ class AccountViewSet(
 
     lookup_field = 'account_number'
     ordering_fields = '__all__'
-    queryset = Account.objects.all()
-    serializer_class = AccountSerializer
+    queryset = TransactionLog.objects.all()
+    serializer_class = TransactionLogSerializer
 
     @action(methods=['get'], detail=True)
     def balance(self, request, account_number=None):
