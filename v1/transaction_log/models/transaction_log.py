@@ -5,9 +5,9 @@ from thenewboston.constants.network import BALANCE_LOCK_LENGTH, MAX_POINT_VALUE,
 
 class TransactionLog(models.Model):
     status_choices = [
-        ('UNCONFIRMED', 0),
-        ('CONFIRMED', 1),
-        ('REJECTED', 2)
+        ('UNCONFIRMED', '0'),
+        ('CONFIRMED', '1'),
+        ('REJECTED', '2')
     ]
     sender = models.CharField(max_length=VERIFY_KEY_LENGTH)
     recipient = models.CharField(max_length=VERIFY_KEY_LENGTH)
@@ -34,7 +34,7 @@ class TransactionLog(models.Model):
     )
     timestamp = models.DateTimeField(auto_now_add=True)
     signature = models.CharField(max_length=128)
-    status = models.IntegerField(choices=status_choices, default=0)
+    status = models.CharField(max_length=11, choices=status_choices, default=0)
 
     def __str__(self):
         return (
