@@ -14,15 +14,9 @@ class TransactionLogViewSet(
     GenericViewSet,
 ):
     """
-    Accounts
+    Transaction Log List View
 
-    ---
-    list:
-      description: List accounts
-    balance:
-      description: Return the balance for the given account
-    balance_lock:
-      description: Return the balance lock for the given account
+    Description: List all the transaction
     """
 
     ordering_fields = '__all__'
@@ -33,5 +27,10 @@ class TransactionLogDetailViewSet(
   generics.RetrieveAPIView,
   GenericViewSet
   ):
+  """
+    Transaction Log Detail View
+  
+    Description: Get the details of a particular transaction
+  """
   queryset = TransactionLog.objects.all()
   serializer_class = TransactionLogDetailSerializer
