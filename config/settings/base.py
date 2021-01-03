@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     # API (v1)
     'v1.accounts.apps.AccountsConfig',
     'v1.transaction_log.apps.TransactionsConfig',
+    'v1.tnb_faucet.apps.FaucetConfig',
     'v1.bank_confirmation_services.apps.BankConfirmationServicesConfig',
     'v1.connection_requests.apps.ConnectionRequestsConfig',
     'v1.self_configurations.apps.SelfConfigurationsConfig',
