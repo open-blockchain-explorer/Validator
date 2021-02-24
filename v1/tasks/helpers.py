@@ -156,6 +156,7 @@ def update_accounts_cache(*, existing_accounts, new_accounts):
 
 def update_accounts_table(*, existing_accounts, new_accounts):
     """Update or create accounts in the accounts table"""
+    logger.info('updating...')
     for account in existing_accounts:
         Account.objects.filter(
             account_number=account['account_number']

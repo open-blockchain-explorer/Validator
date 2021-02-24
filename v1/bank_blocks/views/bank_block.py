@@ -9,6 +9,9 @@ from v1.cache_tools.cache_keys import BLOCK_QUEUE, BLOCK_QUEUE_CACHE_LOCK_KEY
 from v1.decorators.nodes import is_signed_bank_block
 from v1.self_configurations.helpers.self_configuration import get_self_configuration
 from v1.tasks.block_queue import process_block_queue
+import logging
+
+logger = logging.getLogger('thenewboston')
 
 """
 Banks will request a new primary validator if an error status (status code >= 400) is returned
@@ -27,6 +30,7 @@ class BankBlockViewSet(ViewSet):
 
     @staticmethod
     def add_block_to_queue(block):
+        logger.info('adding to queue')
         with cache.lock(BLOCK_QUEUE_CACHE_LOCK_KEY):
             queue = cache.get(BLOCK_QUEUE)
 
@@ -36,12 +40,14 @@ class BankBlockViewSet(ViewSet):
                 queue = [block]
 
             cache.set(BLOCK_QUEUE, queue, None)
+        logger.info('process block queue')
         process_block_queue.delay()
+        logger.info('after')
 
     @staticmethod
     @is_signed_bank_block
     def create(request):
-
+        logger.info('block received by PV')
         self_configuration = get_self_configuration(exception_class=RuntimeError)
 
         if self_configuration.node_type != PRIMARY_VALIDATOR:
