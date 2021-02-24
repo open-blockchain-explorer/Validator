@@ -1,6 +1,6 @@
 import os
 
-ENVIRONMENT = os.environ['DJANGO_APPLICATION_ENVIRONMENT']
+ENVIRONMENT = 'local' #os.environ['DJANGO_APPLICATION_ENVIRONMENT']
 
 if ENVIRONMENT == 'development':
     SETTINGS_MODULE = 'config.settings.development'
