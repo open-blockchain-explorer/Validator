@@ -27,6 +27,7 @@ class BankBlockViewSet(ViewSet):
 
     @staticmethod
     def add_block_to_queue(block):
+        logger.info('adding to queue')
         with cache.lock(BLOCK_QUEUE_CACHE_LOCK_KEY):
             queue = cache.get(BLOCK_QUEUE)
 
@@ -36,7 +37,9 @@ class BankBlockViewSet(ViewSet):
                 queue = [block]
 
             cache.set(BLOCK_QUEUE, queue, None)
+        logger.info('process block queue')
         process_block_queue.delay()
+        logger.info('after')
 
     @staticmethod
     @is_signed_bank_block

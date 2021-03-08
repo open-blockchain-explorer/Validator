@@ -23,6 +23,7 @@ def process_block_queue():
 
     - this is for primary validators only
     """
+    logger.info('process block queue')
     with cache.lock(BLOCK_QUEUE_CACHE_LOCK_KEY):
         block_queue = cache.get(BLOCK_QUEUE)
 
@@ -34,7 +35,7 @@ def process_block_queue():
 
         if not is_valid:
             continue
-
+        logger.info('VALID!')
         existing_accounts, new_accounts = get_updated_accounts(
             sender_account_balance=sender_account_balance,
             validated_block=block
@@ -47,6 +48,7 @@ def process_block_queue():
             existing_accounts=existing_accounts,
             new_accounts=new_accounts
         )
+        logger.info('TABLE UPDATED')
         confirmation_block, head_block_hash = sign_block_to_confirm_and_update_head_block_hash(
             block=block,
             existing_accounts=existing_accounts,
